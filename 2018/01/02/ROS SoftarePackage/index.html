@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ROS程序包 | Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编写ROS程序Hello World创建工作空间catkin是一个ROS中用于管理工作空间的工具,先安装catkin工具 1sudo apt-get install ros-lunar-catkin 接下来是修改环境变量1source /opt/ros/kinetic/setup.bash 因为我们装的是kinetic版本的ROS  所以路径在/opt/ros路径的kinrtic目录下也可以把它修">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS程序包">
+<meta property="og:url" content="http://yoursite.com/2018/01/02/ROS SoftarePackage/index.html">
+<meta property="og:site_name" content="Tech">
+<meta property="og:description" content="编写ROS程序Hello World创建工作空间catkin是一个ROS中用于管理工作空间的工具,先安装catkin工具 1sudo apt-get install ros-lunar-catkin 接下来是修改环境变量1source /opt/ros/kinetic/setup.bash 因为我们装的是kinetic版本的ROS  所以路径在/opt/ros路径的kinrtic目录下也可以把它修">
+<meta property="og:updated_time" content="2017-12-15T05:21:28.087Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS程序包">
+<meta name="twitter:description" content="编写ROS程序Hello World创建工作空间catkin是一个ROS中用于管理工作空间的工具,先安装catkin工具 1sudo apt-get install ros-lunar-catkin 接下来是修改环境变量1source /opt/ros/kinetic/setup.bash 因为我们装的是kinetic版本的ROS  所以路径在/opt/ros路径的kinrtic目录下也可以把它修">
+  
+    <link rel="alternate" href="/atom.xml" title="Tech" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tech</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ROS SoftarePackage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/02/ROS SoftarePackage/" class="article-date">
+  <time datetime="2018-01-02T06:02:32.572Z" itemprop="datePublished">2018-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS程序包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="编写ROS程序"><a href="#编写ROS程序" class="headerlink" title="编写ROS程序"></a>编写ROS程序</h1><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><h4 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h4><p>catkin是一个ROS中用于管理工作空间的工具,先安装catkin工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-lunar-catkin</span><br></pre></td></tr></table></figure>
+<p>接下来是修改环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /opt/ros/kinetic/setup.bash</span><br></pre></td></tr></table></figure></p>
+<p>因为我们装的是kinetic版本的ROS  所以路径在/opt/ros路径的kinrtic目录下<br>也可以把它修改为永久性的</p>
+<p>创建一个工作空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/ros/beginner/src</span><br><span class="line">cd ~/ros/beginner/src</span><br></pre></td></tr></table></figure></p>
+<p>通过这两条命令就可以创建一个工作空间，并转到以创建好的工作空间下。尽管这个空间是空的，我们仍然可以构建它<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/ros/beginner</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure></p>
+<p>使用catkin工作空间时，可以用catkin-make工具构建工作空间，但是要注意 只有在空的项目空间里才能使用catkin_make工具<br>在项目里面会多出两个文件夹， build和devel。<br>这个时候一个工作空间就搭建好了，运行程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source devel/setup.bash</span><br></pre></td></tr></table></figure></p>
+<h6 id="创建功能包"><a href="#创建功能包" class="headerlink" title="创建功能包"></a>创建功能包</h6><p>创建一个新的ROS功能包应该在工作区中的src目录下运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">carkin_create_pkg package-name</span><br></pre></td></tr></table></figure></p>
+<p>这个功能包创建命令并没有做太多的工作，它只是创建了一个存放这个功能包的目录，并且在目录下生成了两个配置文件</p>
+<p>第一个配置文件，叫做package.xml,这个文件是定义了包的一些细节。包括包的名称、版本、开发者和依赖关系<br>第二个文件，叫做 CMakeLists.txt，是一个 Cmake 的脚本文件，<br>Cmake 是一个符合工业标准的跨平台编译系统。这个文件包<br>含了一系列的编译指令，包括应该生成哪种可执行文件，需<br>要哪些源文件，以及在哪里可以找到所需的头文件和链接库。<br>当然，这个文件表明 catkin 在内部使用了 Cmake。</p>
+<p>我们可以这样创建一个功能包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_create_pkg better</span><br></pre></td></tr></table></figure></p>
+<p>这样就是创建了一个功能包</p>
+<h6 id="编辑package-xml"><a href="#编辑package-xml" class="headerlink" title="编辑package.xml"></a>编辑package.xml</h6><p>创建了包之后，我们就可以开始编写ROS程序了。<br>先看到刚刚讲过的package.xml文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span>?&gt;</span><br><span class="line">&lt;package format=<span class="string">"2"</span>&gt;</span><br><span class="line">  &lt;name&gt;better&lt;/name&gt;</span><br><span class="line">  &lt;version&gt;0.0.1&lt;/version&gt;</span><br><span class="line">  &lt;description&gt;The better package&lt;/description&gt;</span><br><span class="line">  &lt;maintainer email=<span class="string">"techping@todo.todo"</span>&gt;techping&lt;/maintainer&gt;</span><br><span class="line">  &lt;license&gt;TODO&lt;/license&gt;</span><br><span class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</span><br><span class="line">&lt;/package&gt;</span><br></pre></td></tr></table></figure>
+<p>包名信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;name&gt;better&lt;/name&gt;</span><br></pre></td></tr></table></figure></p>
+<p>版本信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;version&gt;0.0.1&lt;/version&gt;</span><br></pre></td></tr></table></figure></p>
+<p>描述信息，可以将描述信息改为任何你喜欢的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;description&gt;The better package&lt;/description&gt;</span><br></pre></td></tr></table></figure></p>
+<p>开发者信息，这个是package.xml中要求填写的一个重要标签，因为它能够让其他人联系到程序包的相关人员，至少需要一个开发者名称和联系方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;maintainer email=&quot;techping@todo.todo&quot;&gt;techping&lt;/maintainer&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 许可协议信息，选择一种许可协议并将它填写到这里。一些常见的开源许可协议有BSD、MIT、Boost Software License、GPLv2、GPLv3、LGPLv2.1和LGPLv3。你可以在Open Source Initiative中阅读其中的若干个许可协议的相关信息。对于本教程我们将使用BSD协议，因为ROS核心组件的剩余部分已经使用了该协议<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;license&gt;BSD&lt;/license&gt;</span><br></pre></td></tr></table></figure></p>
+<p>依赖项标签，用来描述程序包的各种依赖项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="编译执行程序"><a href="#编译执行程序" class="headerlink" title="编译执行程序"></a>编译执行程序</h4><p>创建玩所需系统的依赖项，我们就可以编译刚刚创建的程序包了<br>在编译之前需要source一下环境配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /opt/ros/kinetic/setup.bash</span><br></pre></td></tr></table></figure></p>
+<p>运行完之后，使用catkin-make命令编译程序，catkin-make是一个命令行工具，它简化了catkin的标准工作流程。你可以认为catkin_make是在Cmake标准工作流程中一次调用了cmake和make<br>使用方法：<br>在catkin_make工作空间下运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make [make_targets] [-DCMAKE_VARIABLES]</span><br></pre></td></tr></table></figure>
+<p>Cmake标准工作流程主要分为以下几个步骤，<br>在一个Cmake项目里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>每个Cmake工程在编译时都会执行这个操作过程。相反，多个catkin项目可以房子啊工作空间中一起编译，工作流程如下：<br>在catkin工作空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">catkin_make</span><br><span class="line">catkin_make install</span><br></pre></td></tr></table></figure></p>
+<p>上述命令会编译src文件夹下的所有carkin工程</p>
+<h3 id="查看和定位"><a href="#查看和定位" class="headerlink" title="查看和定位"></a>查看和定位</h3><p>查看软件列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rospack list</span><br></pre></td></tr></table></figure></p>
+<p>查找某个软件包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rospack find package-name</span><br></pre></td></tr></table></figure></p>
+<p>查看某个软件包信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosls package-name</span><br></pre></td></tr></table></figure></p>
+<p>切换软件包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscd package-name</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/02/ROS SoftarePackage/" data-id="cjc30f1vo00007cx01w2jynuz" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/02/Ubuntu Install ROS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu下安装ROS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/02/ROS Node/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">ROS节点解析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/02/Ubuntu Install ROS/">Ubuntu下安装ROS</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/ROS SoftarePackage/">ROS程序包</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/ROS Node/">ROS节点解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/xmind/">思维脑图</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Propulsé par <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

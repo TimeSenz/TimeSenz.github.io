@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ROS节点解析 | Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="理解ROS节点先决条件 在本教程中我们将使用到一个轻量级的模拟器，使用下面的命令来安装： 1sudo apt-get install ros-&amp;lt;distorials&amp;gt;  用你使用的ros发行版本名称（例如electric、 fuerte、 groovy、hydro等）替换掉’‘ 图概念概述 Nodes: 节点，一个节点即为一种可执行文件，他可以通过ROS与其它节点进行通信 Messag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS节点解析">
+<meta property="og:url" content="http://yoursite.com/2018/01/02/ROS Node/index.html">
+<meta property="og:site_name" content="Tech">
+<meta property="og:description" content="理解ROS节点先决条件 在本教程中我们将使用到一个轻量级的模拟器，使用下面的命令来安装： 1sudo apt-get install ros-&amp;lt;distorials&amp;gt;  用你使用的ros发行版本名称（例如electric、 fuerte、 groovy、hydro等）替换掉’‘ 图概念概述 Nodes: 节点，一个节点即为一种可执行文件，他可以通过ROS与其它节点进行通信 Messag">
+<meta property="og:image" content="http://art-ping.wang/image/roscore.png">
+<meta property="og:image" content="http://art-ping.wang/image/turtlesim.png">
+<meta property="og:image" content="https://i.imgur.com/IcJxh7S.jpg">
+<meta property="og:updated_time" content="2017-12-15T03:30:33.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS节点解析">
+<meta name="twitter:description" content="理解ROS节点先决条件 在本教程中我们将使用到一个轻量级的模拟器，使用下面的命令来安装： 1sudo apt-get install ros-&amp;lt;distorials&amp;gt;  用你使用的ros发行版本名称（例如electric、 fuerte、 groovy、hydro等）替换掉’‘ 图概念概述 Nodes: 节点，一个节点即为一种可执行文件，他可以通过ROS与其它节点进行通信 Messag">
+<meta name="twitter:image" content="http://art-ping.wang/image/roscore.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tech" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tech</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ROS Node" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/02/ROS Node/" class="article-date">
+  <time datetime="2018-01-02T06:02:32.570Z" itemprop="datePublished">2018-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS节点解析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="理解ROS节点"><a href="#理解ROS节点" class="headerlink" title="理解ROS节点"></a>理解ROS节点</h1><h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p> 在本教程中我们将使用到一个轻量级的模拟器，使用下面的命令来安装：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-&lt;distorials&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 用你使用的ros发行版本名称（例如electric、 fuerte、 groovy、hydro等）替换掉’<distro>‘</distro></p>
+<h2 id="图概念概述"><a href="#图概念概述" class="headerlink" title="图概念概述"></a>图概念概述</h2><ul>
+<li>Nodes: 节点，一个节点即为一种可执行文件，他可以通过ROS与其它节点进行通信</li>
+<li>Messages：消息，消息是一种ROS数据类型，用于订阅或发布到一个话题</li>
+<li>Topics： 话题，节点可以发布消息到话题，也可以订阅话题以接收消息</li>
+<li>Master： 节点管理器，ROS名称服务(比如帮助姐节点找到彼此)</li>
+<li>rosout： ros中相当于stdout/stderr</li>
+<li>roscore: 主机 + rosout + 参数服务器</li>
+</ul>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>一个节点其实只不过是ROS程序包中的一个可执行文件，ROS节点可以使用ROS客户库于其他节点通信，节点可以发布或接受一个话题。姐弟那也可以提供或使用某种服务。<br>    节点是ros中非常重要的一个概念，为了帮助初学者理解这个概念，这里举一个通俗的例子<br>    例如，咱们有一个机器人和一个遥控器，那么机器人和遥控器开始工作后，就是两个节点。遥控器起到了下达指令的作用。机器人负责监听遥控器下达的指令。完成相应动作。从这里我们就可以看出。节点是一个能执行待定工作任务的工作但愿，并且能够相互通信。从而实现一个机器人整体的功能。在这里我们把遥控器和机器人呢简单定义为两个节点。这个是根据用户编写的程序来定义的</p>
+<h2 id="客户端库"><a href="#客户端库" class="headerlink" title="客户端库"></a>客户端库</h2><p>ROS客户端库允许使用不同编程语言编写的节点之间互相通信</p>
+<ul>
+<li>rospy = python客户端库</li>
+<li>roscpp = C++客户端库</li>
+</ul>
+<h2 id="roscore"><a href="#roscore" class="headerlink" title="roscore"></a>roscore</h2><p>roscore是你运行所有ros程序前首先要运行的命令<br>请运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></p>
+<p>如果roscore运行后无法正常初始化，很有可能是存在网络配置问题。参见<br><a href="http://wiki.ros.org/ROS/NetworkSetup#Single_machine_configuration" target="_blank" rel="noopener">网络设置–单机设置</a></p>
+<p><img src="http://art-ping.wang/image/roscore.png" alt="roscore"></p>
+<p> 如果 roscore 不能初始化并提示缺少权限，这可能是因为~/.ros文件夹<br>归属于root用户（只有root用户才能访问），修改该文件夹的用户归属关系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R &lt;your_username&gt; ~/.ros</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用rosnode"><a href="#使用rosnode" class="headerlink" title="使用rosnode"></a>使用rosnode</h2><p>打开一个新的终端，可以使用rosnode像运行roscore一样看看在运行什么</p>
+<p>当打开一个新的终端时，你的运行环境会复位，同时你的~/.bashrc</p>
+<p>文件会复原。如果你在运行类似于rosnode的指令时出现一些问题，也许你需要添加</p>
+<p>一些环境设置文件到你的~/.bashrc或者手动重新配置他们。</p>
+<p>rosnode 显示当前运行的ROS节点信息。rosnode list 指令列出活跃的节点:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosnode list</span><br></pre></td></tr></table></figure></p>
+<p>你会看到：<br>/rosout</p>
+<p>这表示当前只有一个节点在运行 rosout. 因为这个节点用于手机和记录节点的调试输出信息，所以它总是在运行的</p>
+<p>rosnode info命令返回的是关于一个特定节点的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosnode info /rosout</span><br></pre></td></tr></table></figure></p>
+<p>这给了我们更多的一些有关rosout的信息，例如，事实上由它发布</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosout_agg</span><br></pre></td></tr></table></figure>
+<p>现在，让我们看看更多的节点。为此，我们将使用rosrun弹出另一个节点</p>
+<h2 id="使用rosrun"><a href="#使用rosrun" class="headerlink" title="使用rosrun"></a>使用rosrun</h2><p>rosrun允许你使用包名直接运行一个包内的节点（而不需要知道这个包的路径）</p>
+<p>用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun [package_name] [node_name]</span><br></pre></td></tr></table></figure></p>
+<p>现在我们可以运行turtlesim包中的turtlesim_node<br>然后，在一个新的终端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun turtlesim turtlesim_node</span><br></pre></td></tr></table></figure></p>
+<p>你会看到turtlesim窗口</p>
+<p><img src="http://art-ping.wang/image/turtlesim.png" alt="turtlesim"></p>
+<p>在一个新的终端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosnode list</span><br></pre></td></tr></table></figure></p>
+<p>你会看见类似于</p>
+<pre><code>/rosout
+/turulesim
+</code></pre><p>的运行结果，这里说明有两个节点正在运行<br>在这个终端上 我们再运行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun turtlesim turtle_teleop_key</span><br></pre></td></tr></table></figure></p>
+<p>就可以在这个终端控制小乌龟的前后左右移动</p>
+<p><img src="https://i.imgur.com/IcJxh7S.jpg" alt="小乌龟移动"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/02/ROS Node/" data-id="cjc30f1vu00017cx0ipe8ia6q" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/02/ROS SoftarePackage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          ROS程序包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/02/xmind/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">思维脑图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/02/Ubuntu Install ROS/">Ubuntu下安装ROS</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/ROS SoftarePackage/">ROS程序包</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/ROS Node/">ROS节点解析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/xmind/">思维脑图</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Propulsé par <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
